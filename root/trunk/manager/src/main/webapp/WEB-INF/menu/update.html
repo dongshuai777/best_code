@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/super.js"></script>
+    <script src="menu.js"></script>
+    <title>update</title>
+</head>
+<body>
+<form id="myform">
+<!-- Main content -->
+<input type="hidden" id="id" value="" name="id" path="id">
+<section class="content bg_section" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>菜单名</label>
+                        <input type="text" name="name" path="name" class="form-control" placeholder="菜单名" >
+                    </div>
+                    <div class="form-group">
+                        <label>访问地址</label>
+                        <input type="text" name="url" path="url" class="form-control" placeholder="访问地址" >
+                    </div>
+                    <div class="form-group">
+                        <label>序号</label>
+                        <input type="text" name="order_no" path="order_no" class="form-control" placeholder="序号" >
+                    </div>
+                    <div class="form-group">
+                        <label>图片名</label>
+                        <input type="text" name="img" path="img" class="form-control" placeholder="图片名" >
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="button" class="btn btn-default closeIframe" id="closeIframe">关闭</button>
+                    <button type="button" class="btn btn-success pull-right" data-type="update" onclick="operate('update')">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>
+</body>
+</html>

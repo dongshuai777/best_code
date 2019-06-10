@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lccx.server.dao.LoginMapper" >
+    <resultMap id="SysUserMap" type="com.lccx.module.SysUser" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="active" property="active" jdbcType="CHAR" />
+    </resultMap>
+
+    <select id="queryUser" parameterType="com.lccx.module.SysUser" resultMap="SysUserMap">
+        select id,login_name,name,active from sys_user
+        <trim prefix="WHERE" prefixOverrides="AND | OR ">
+            <if test="id != null and id != ''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="loginName != null and loginName != ''">
+                and login_name = #{loginName,jdbcType=VARCHAR}
+            </if>
+
+        </trim>
+    </select>
+
+</mapper>

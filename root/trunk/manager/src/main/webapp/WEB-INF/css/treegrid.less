@@ -1,0 +1,129 @@
+///*EasyUI Tree的展开/收缩依赖这个字体，请不要删除他*/
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('../js/bower_components/font-awesome/fonts/fontawesome-webfont.eot?v=4.5.0');
+  src: url('../js/bower_components/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.5.0') format('embedded-opentype'), url('../js/bower_components/font-awesome/fonts/fontawesome-webfont.woff2?v=4.5.0') format('woff2'), url('../js/bower_components/font-awesome/fonts/fontawesome-webfont.woff?v=4.5.0') format('woff'), url('../js/bower_components/font-awesome/fonts/fontawesome-webfont.ttf?v=4.5.0') format('truetype'), url('../js/bower_components/font-awesome/fonts/fontawesome-webfont.svg?v=4.5.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+.tdBorderStyle() {
+  td {
+    border-style: solid;
+  }
+}
+
+.datagrid-row-selected {
+  background-color: rgb(89, 155, 233);
+  /*background-color: transparent;*/
+  color: #000;
+}
+
+.datagrid-row-over {
+  /*background-color: rgba(89, 155, 233, 0.75);*/
+}
+
+.datagrid-header {
+
+  @headCell_H: 40px;
+  height: @headCell_H !important;
+  background: transparent;
+  .tdBorderStyle();
+
+  .datagrid-header-inner {
+
+    .datagrid-htable {
+      height: @headCell_H !important;
+      background-color: transparent;
+    }
+
+    .datagrid-header-row {
+      height: @headCell_H;
+      //表头所在tr的样式
+      .datagrid-cell {
+        height: @headCell_H;
+        line-height: @headCell_H;
+
+        span {
+          font-size: 14px;
+          font-weight: bold;
+        }
+        /*background-color: red;*/
+      }
+    }
+  }
+}
+
+.datagrid-body {
+  @bodyCell_H: 34px;
+  .tdBorderStyle();
+
+  .datagrid-btable {
+    .datagrid-row {
+      .datagrid-cell {
+        /*height: @bodyCell_H;
+        line-height: @bodyCell_H;*/
+        /*background-color:red;*/
+        .fa() {
+          display: inline-block;
+          font: normal normal normal 14px/1 FontAwesome;
+          font-size: 14px;
+          text-rendering: auto;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          margin-top: 3px;
+        }
+
+        span {
+          height: @bodyCell_H;
+          line-height: @bodyCell_H;
+          background: none;
+          text-align: center;
+          margin-top: 3px;
+
+          &.tree-collapsed:before {
+            //关闭时
+            .fa();
+            content: "\f0da";
+          }
+
+          &.tree-expanded:before {
+            //展开时
+            .fa();
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+            content: "\f0da";
+          }
+
+          &.tree-icon {
+            margin-top: 3px;
+          }
+          //文件夹
+          &.tree-folder:before {
+            .fa();
+            content: "\f07b";
+          }
+          //文件夹 展开时
+          &.tree-folder-open:before {
+            .fa();
+            content: "\f07c";
+          }
+          //文件
+          &.tree-file:before {
+            .fa();
+            content: "\f07b";
+          }
+        }
+      }
+    }
+  }
+}
+
+.datagrid-footer {
+  .tdBorderStyle();
+}

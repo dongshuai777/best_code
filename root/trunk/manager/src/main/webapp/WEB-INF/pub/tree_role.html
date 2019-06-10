@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.5/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../js/bower_components/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="../js/jquery-easyui-1.5/themes/icon.css">
+    <script src="../js/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="../js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <script language="JavaScript" src="../js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js" ></script>
+    <script src="../common/commit.js"></script>
+    <script src="../common/table.js"></script>
+</head>
+<body>
+<div id="button" style="display: none">
+    <button type="button" class="btn btn-success pull-right" id="save" data-type="add" onclick="parent.treeBack(getChecked(),getUrlParam('param'))">保存</button>
+</div>
+<ul id="tree">
+</ul>
+
+</body>
+</html>
+
+<script>
+    /**
+     * checked:复选框默认选中的id值（1,2,3）
+     * checkbox:true/false 是否显示复选框
+     * button:true/false 是否显示保存按钮
+     * param:不做任何处理传入传出的值
+     * */
+    $(function(){
+        var checked=getUrlParam('checked');//复选框默认选中的值
+        var checkbox=getUrlParam('checkbox');//是否有复选框
+        var button=getUrlParam('button');//是否有保存按钮
+        if(button==='true'){
+            $('#button').css('display','block');
+        }
+        if(checkbox==='true') {
+            checkbox = true;
+        }else
+            checkbox=false;
+        $('#tree').tree({
+            checkbox:checkbox,
+            cascadeCheck:false,
+            formatter: function (node) {
+                var s = '<font size="2">' + node.text + '</font>';
+                return s;
+            },
+            onLoadSuccess:function(){
+                $(".tree-icon,.tree-file").removeClass("tree-icon tree-file");
+                $(".tree-icon,.tree-folder").removeClass("tree-icon tree-folder tree-folder-open tree-folder-closed");
+            }
+        });
+        var data=ajaxCommit(false,'/Manager/Role/Tree','GET',{checked:checked});
+        $('#tree').tree('loadData',data.data);
+    });
+
+
+    /**
+     * 获得复选框选中id
+     * @returns {string}
+     */
+    function getChecked(){
+        var nodes = $('#tree').tree('getChecked');
+        var s = '';
+        for(var i=0; i<nodes.length; i++){
+            if (s != '') s += ',';
+            s += nodes[i].id;
+        }
+        return s;
+    }
+</script>

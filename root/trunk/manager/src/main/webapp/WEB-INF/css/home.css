@@ -1,0 +1,14 @@
+#content_div {
+    background-color: #ffffff
+}
+.submit_btn_1{
+    width: 100px;
+    margin: auto;
+}
+.index_body{
+    background-image: url(../image/pexels-photo-222.jpg);
+    background-size: 100%;
+    background-position: 0;
+    background-repeat: no-repeat;
+}
+

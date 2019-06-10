@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/super.js"></script>
+    <script src="user.js"></script>
+    <title>add</title>
+</head>
+<body>
+<form id="myform" class="required-validate">
+<section class="content bg_section" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" name="name" class="form-control" placeholder="姓名" >
+                    </div>
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="loginName" class="form-control" placeholder="用户名" >
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" name="pwd" class="form-control" placeholder="密码" >
+                    </div>
+                    <div class="form-group">
+                        <label>确认密码</label>
+                        <input type="password" name="password_again" class="form-control" placeholder="再次输入密码" >
+                    </div>
+                    <div class="form-group">
+                        <label>头像</label>
+                        <input type="text" name="imgName" onfocus="operate('upload')" class="form-control" placeholder="头像" >
+                        <input type="hidden" name="img">
+                    </div>
+                    <div class="form-group">
+                        <label>状态</label>
+                        <select onchange="colorChange(this)" class="js-example-basic-multiple select2 form-control" name="active" id="active" style="width: 100%">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="button" class="btn btn-default closeIframe" id="closeIframe">关闭</button>
+                    <button type="button" class="btn btn-success pull-right" id="save" data-type="add" onclick="operate('add')">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>
+</body>
+</html>

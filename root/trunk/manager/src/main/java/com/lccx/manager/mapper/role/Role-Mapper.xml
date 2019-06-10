@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lccx.manager.dao.role.RoleMapper" >
+    <resultMap id="RoleMap" type="com.lccx.manager.service.role.RoleServiceData" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="order_no" property="orderNo" jdbcType="INTEGER" />
+        <result column="state" property="state" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+
+        <result column="state_name" property="stateName" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, order_no, state, name
+    </sql>
+
+    <!--根据用户id查询用户角色(所有启用的角色)-->
+    <select id="queryUserRole" parameterType="String" resultMap="RoleMap">
+        select a.* from sys_role a join sys_user_role b
+        where a.id=b.role_id
+        and b.user_id = #{userId,jdbcType=VARCHAR}
+        and a.state='1'
+    </select>
+
+
+    <!--查询角色列表-->
+    <select id="queryList" parameterType="com.lccx.manager.entity.SysRole" resultMap="RoleMap">
+        select
+        <include refid="Base_Column_List" />,
+        (case
+        when state ='0' then '停用'
+        else '启用'
+        end) as state_name
+        from sys_role
+        <trim prefix="WHERE" prefixOverrides="AND | OR ">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="state !=null and state != ''">
+                and state =  #{state}
+            </if>
+            <if test="name !=null and name != ''">
+                and name like CONCAT(CONCAT('%',#{name}),'%')
+            </if>
+        </trim>
+        order by order_no
+    </select>
+
+    <!--保存角色-->
+    <insert id="save" parameterType="com.lccx.manager.entity.SysRole">
+        insert into sys_role (<include refid="Base_Column_List" />)
+        values
+        (
+         #{id}
+         ,#{orderNo}
+         ,#{state}
+         ,#{name}
+        )
+    </insert>
+    <!--批量删除-->
+    <delete id="delete" parameterType="java.util.Arrays">
+        delete from sys_role
+        where id in
+        <foreach item="str" index="index" collection="array" open="(" separator="," close=")">
+            #{str}
+        </foreach>
+    </delete>
+    <!--修改角色-->
+    <update id="update" parameterType="com.lccx.manager.entity.SysUser">
+        update sys_role
+        <set>
+            <if test="name != null and name !=''">
+                `name`=#{name},
+            </if>
+            <if test="state != null and state !=''">
+                `state`=#{state},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--根据role_id删除sys_role_menu表-->
+    <delete id="deleteRoleMenuByRoleId" parameterType="string">
+        delete from sys_role_menu where role_id=#{id}
+    </delete>
+
+    <!--保存sys_role_menu表数据-->
+    <insert id="saveRoleMenu" parameterType="java.util.List">
+        insert into sys_role_menu (id,role_id,menu_id) values
+        <foreach collection="list" item="item" separator=",">
+            (
+              #{item.id},
+              #{item.roleId},
+              #{item.menuId}
+            )
+        </foreach>
+    </insert>
+</mapper>

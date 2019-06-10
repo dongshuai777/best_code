@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/super.js"></script>
+    <script src="../common/aes.js" type="text/javascript"></script>
+    <script src="../common/mode-ecb.js" type="text/javascript"></script>
+    <script src="../js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="../login/login.js"></script>
+</head>
+<body onkeydown="on_return(event);" class="index_body">
+<input type="hidden" id="pk">
+<input type="hidden" id="key">
+<div id="addheight" style="padding-top: 170px;position: relative;">
+        <div class="box box-info" style="width: 300px;margin: 0 auto;opacity: 0.8;">
+            <div class="box-header with-border">
+                <h3 class="box-title">格瓦斯</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal">
+                <div class="box-body">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" id="username" placeholder="用户名">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <input type="password" class="form-control" id="password" placeholder="密码">
+                        </div>
+                    </div>
+                    <div class="callout callout-danger" style="display: none;"><p></p></div>
+                    <!-- <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer">
+                    <button type="button" class="btn btn-block btn-success" name="login_btn">登录</button>
+                </div>
+                <!-- /.box-footer -->
+            </form>
+        </div>
+</div>
+</body>
+</html>

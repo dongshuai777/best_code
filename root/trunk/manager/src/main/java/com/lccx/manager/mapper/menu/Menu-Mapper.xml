@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lccx.manager.dao.menu.MenuMapper" >
+    <resultMap id="MenuMap" type="com.lccx.manager.entity.SysMenu" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="order_no" property="orderNo" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
+        <result column="img" property="img" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+
+
+    <select id="queryRoleMenu" parameterType="string" resultMap="MenuMap">
+        select a.id,a.name,a.url,a.parent_id,a.order_no,a.type,a.img
+        from sys_menu a
+        inner join
+        sys_role_menu b
+        on
+        a.id=b.menu_id
+        where find_in_set(b.role_id,#{roleIds})
+    </select>
+
+    <select id="queryMenu" parameterType="com.lccx.manager.entity.SysMenu" resultMap="MenuMap">
+        select *
+        from sys_menu
+        <trim prefix="WHERE" prefixOverrides="AND | OR ">
+            <if test="id != null and id != ''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and parent_id = #{parentId,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null and type != ''">
+                and `type` = #{type,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        order by order_no
+    </select>
+
+    <insert id="saveMenu" parameterType="com.lccx.manager.entity.SysMenu">
+        insert into sys_menu (id,name,url,parent_id,order_no,type,img) values
+        (
+        #{id},
+        #{name},
+        #{url},
+        #{parentId},
+        #{orderNo},
+        #{type},
+        #{img}
+        )
+    </insert>
+
+    <select id="getMenuById" parameterType="com.lccx.manager.entity.SysMenu" resultMap="MenuMap">
+        select *
+        from sys_menu
+        <trim prefix="WHERE" prefixOverrides="AND | OR ">
+            <if test="id != null and id != ''">
+                and id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null and name != ''">
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and parent_id = #{parentId,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null and type != ''">
+                and `type` = #{type,jdbcType=VARCHAR}
+            </if>
+        </trim>
+        order by order_no
+    </select>
+
+    <delete id="deleteMenu" parameterType="string">
+        delete from sys_menu where id=#{id} or parent_id=#{id}
+    </delete>
+
+    <update id="updateMenu" parameterType="com.lccx.manager.entity.SysMenu">
+        update sys_menu
+        <set>
+            <if test="name != null and name !=''">
+                name=#{name},
+            </if>
+            <if test="url != null and url !=''">
+                url=#{url},
+            </if>
+            <if test="orderNo != null and orderNo !=''">
+                order_no=#{orderNo},
+            </if>
+            <if test="img != null and img !=''">
+                img=#{img},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+</mapper>

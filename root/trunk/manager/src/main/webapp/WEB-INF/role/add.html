@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/super.js"></script>
+    <script src="role.js"></script>
+    <title>add</title>
+</head>
+<body>
+<form id="myform" class="required-validate">
+    <section class="content bg_section" >
+        <div class="row">
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label>角色名</label>
+                            <input type="text" name="name" class="form-control" placeholder="角色名" >
+                        </div>
+                        <div class="form-group">
+                            <label>状态</label>
+                            <select onchange="colorChange(this)" class="js-example-basic-multiple select2 form-control" name="state" id="state" style="width: 100%">
+                                <option></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button type="button" class="btn btn-default closeIframe" id="closeIframe">关闭</button>
+                        <button type="button" class="btn btn-success pull-right" id="save" data-type="add" onclick="operate('update')">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</form>
+</body>
+</html>

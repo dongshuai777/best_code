@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<codes>
+    <Code><!-- 性别 -->
+        <key>sex</key><id>0</id><text>男</text>
+    </Code>
+    <Code><!-- 性别 -->
+        <key>sex</key><id>1</id><text>女</text>
+    </Code>
+    <Code><!-- 启用停用 -->
+        <key>active</key><id>0</id><text>停用</text>
+    </Code>
+    <Code><!-- 启用停用 -->
+        <key>active</key><id>1</id><text>启用</text>
+    </Code>
+
+    <Code><!-- 启用停用 -->
+        <key>state</key><id>0</id><text>停用</text>
+    </Code>
+    <Code><!-- 启用停用 -->
+        <key>state</key><id>1</id><text>启用</text>
+    </Code>
+</codes>

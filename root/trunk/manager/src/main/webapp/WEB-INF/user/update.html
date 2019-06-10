@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/super.js"></script>
+    <script src="user.js"></script>
+    <title>update</title>
+</head>
+<body>
+<form id="myform">
+<!-- Main content -->
+<input type="hidden" id="id" value="" name="id" path="id">
+<section class="content bg_section" >
+    <div class="row">
+        <div class="col-md-6">
+            <div class="box">
+                <div class="box-body">
+                    <div class="form-group">
+                        <label>姓名</label>
+                        <input type="text" name="name" path="name" class="form-control" placeholder="姓名">
+                    </div>
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input type="text" name="loginName" path="loginName" class="form-control" placeholder="用户名" disabled>
+                    </div>
+                    <!--<div class="form-group">-->
+                        <!--<label>密码</label>-->
+                        <!--<input type="password" name="pwd" class="form-control" placeholder="密码" >-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                        <!--<label>确认密码</label>-->
+                        <!--<input type="password" name="password_again" class="form-control" placeholder="再次输入密码" >-->
+                    <!--</div>-->
+                    <div class="form-group">
+                        <label>头像</label>
+                        <input type="password" name="img" path="img" class="form-control" placeholder="头像" >
+                    </div>
+                    <div class="form-group">
+                        <label>状态</label>
+                        <select onchange="colorChange(this)" path="active" class="js-example-basic-multiple select2 form-control" name="active" id="active" style="width: 100%">
+                            <option></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="button" class="btn btn-default closeIframe" id="closeIframe">关闭</button>
+                    <button type="button" class="btn btn-success pull-right" data-type="update" onclick="operate('update')">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</form>
+</body>
+</html>
