@@ -7,6 +7,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -24,7 +25,9 @@ public class SystemLoad implements InitializingBean {
         String dict_xml=ConstantClass.DICT_PATH;
         SAXReader reader = new SAXReader();
         //spring boot 加载方式
-        Document document = reader.read(ResourceUtils.getFile("classpath:"+dict_xml));
+//        Document document = reader.read(ResourceUtils.getFile("classpath:"+dict_xml));
+        InputStream xmlFile=this.getClass().getResourceAsStream("/"+dict_xml);//打jar包时这样读取配置文件
+        Document document = reader.read(xmlFile);
         Element root = document.getRootElement();
         Element foo;
         ConstantClass.DICT_MAP =new HashMap<String, List>();
